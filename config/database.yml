@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: cachorro_production
-  username: cachorro
-  password: <%= ENV['CACHORRO_DATABASE_PASSWORD'] %>
+  username: ettore-bernardi
+  password: <%= ENV['C4t3t0'] %>
