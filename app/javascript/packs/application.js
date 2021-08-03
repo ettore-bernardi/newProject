@@ -7,5 +7,4 @@ import "bootstrap"
 import "stylesheets/application"
 
 require("jquery")
-require("@nathanvda/cocoon")
 import "cocoon";
