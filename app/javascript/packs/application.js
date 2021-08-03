@@ -5,3 +5,6 @@ require("channels")
 
 import "bootstrap"
 import "stylesheets/application"
+
+require("jquery")
+import "cocoon";
