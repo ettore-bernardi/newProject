@@ -1,0 +1,25 @@
+
+<%= simple_form_for(@order) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :total %>
+    <%= f.association :user %>
+    <%= f.input :order_date %>
+    <%= f.input :done %>
+  </div>
+
+    <div class="cocoon">
+    <%= f.simple_fields_for :items do |item| %>
+      <%= render 'item_fields', f: item %>
+    <% end %>
+    <div>
+      <%= link_to_add_association "add item", f, :items %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
