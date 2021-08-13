@@ -20,5 +20,15 @@
   <%= @order.done %>
 </p>
 
+<h4>items</h4>
+  <ul>
+    <% for @item in @order.items %>
+      <div>
+        Product: <%= @item.product.name %>
+        Price: <%= @item.product.price*@item.quantity %>
+      </div>
+    <% end %>
+  </ul>
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

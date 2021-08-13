@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_004619) do
 
   create_table "items", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.integer "quantity"
+    t.integer "quantity", null: false
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
