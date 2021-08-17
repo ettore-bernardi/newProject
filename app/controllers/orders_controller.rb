@@ -33,6 +33,8 @@ class OrdersController < ApplicationController
 
   def update
     respond_to do |format|
+      @order.order_date = Time.now
+      @order.total = @order.set_total
       if @order.update(order_params)
         format.html { redirect_to @order, notice: "Order was successfully updated." }
         format.json { render :show, status: :ok, location: @order }

@@ -1,5 +1,5 @@
 <div class="nested-fields">
-    <%= f.association :product, collection: Product.all.order(:price).map{ |product| ["$#{product.price} | " + product.name]  }, prompt: "Choose a Company" %>
+    <%= f.association :product, collection: Product.all.order(:price).map{ |product| ["$#{product.price} | " + product.name, product.id]  }, prompt: "Choose a Company" %>
     
     <%= f.input :quantity, label: 'Items quantity'%>
 

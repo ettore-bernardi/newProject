@@ -13,4 +13,5 @@ class Order < ApplicationRecord
       end
       @price
     end
+    
 end
