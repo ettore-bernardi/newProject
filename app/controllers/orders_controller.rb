@@ -17,9 +17,11 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.build(order_params)
-    @order.update(order_date: Time.now)
+    @order.order_date = Time.now
+    @order.total = @order.set_total
     respond_to do |format|
       if @order.save
+        
         format.html { redirect_to @order, notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
@@ -28,7 +30,7 @@ class OrdersController < ApplicationController
       end
     end
   end
-  
+
   def update
     respond_to do |format|
       if @order.update(order_params)
