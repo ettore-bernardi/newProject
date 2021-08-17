@@ -4,10 +4,11 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :total %>
-    <%= f.input :done %>
+    <% unless current_user.role %>
+      <%= f.input :done %>
+    <% end %>
   </div>
-
+  
     <div class="cocoon">
     <%= f.simple_fields_for :items do |item| %>
       <%= render 'item_fields', f: item %>

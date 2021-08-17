@@ -1,5 +1,10 @@
 <div class="nested-fields">
-    <%= f.select(:product_id, Product.all.collect { |c| [ c.name, c.id ] }, {}, { "data-placeholder": "Select product", class:'btn btn-secondary' },) %>
-    <%= f.input :quantity %>
-    <%= link_to_remove_association "remove task", f %>
+    <%= f.association :product, collection: Product.all.order(:price).map{ |product| ["$#{product.price} | " + product.name, product.id]  }, prompt: "Choose a Company" %>
+    
+    <%= f.input :quantity, label: 'Items quantity'%>
+
+    <div>
+    <%= link_to_remove_association "remove item", f, class:'btn btn-danger' %>
+    </div>
+
 </div>

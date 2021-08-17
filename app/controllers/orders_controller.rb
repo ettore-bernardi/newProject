@@ -2,24 +2,26 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   def show
   end
 
   def new
-    @order = Order.new
+    @order = current_user.orders.build
   end
 
   def edit
   end
 
   def create
-    @order = Order.new(order_params)
-
+    @order = current_user.orders.build(order_params)
+    @order.order_date = Time.now
+    @order.total = @order.set_total
     respond_to do |format|
       if @order.save
+        
         format.html { redirect_to @order, notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
@@ -31,6 +33,8 @@ class OrdersController < ApplicationController
 
   def update
     respond_to do |format|
+      @order.order_date = Time.now
+      @order.total = @order.set_total
       if @order.update(order_params)
         format.html { redirect_to @order, notice: "Order was successfully updated." }
         format.json { render :show, status: :ok, location: @order }
@@ -40,7 +44,7 @@ class OrdersController < ApplicationController
       end
     end
   end
-
+  
   def destroy
     @order.destroy
     respond_to do |format|
@@ -51,8 +55,9 @@ class OrdersController < ApplicationController
 
   private
     def set_order
-      @order = Order.find(params[:id])
+      @order = current_user.orders.find(params[:id])
     end
+
 
     def order_params
       params.require(:order).permit(:total, :user_id, :order_date, :done, items_attributes:[:id, :product_id, :quantity, :_destroy])
