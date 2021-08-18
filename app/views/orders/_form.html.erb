@@ -20,7 +20,19 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, 'Update order' %>
-    <button type="button" class="btn btn-success" >finish order</button>
+      <%= f.button :submit, 'Update order' %>
+    <% if order.ordered? %>
+      <button type="button" class="btn btn-danger" 
+      data-reflex="click->FinishOrderReflex#cancel"
+      data-order-id="<%= @order.id %>"
+      >Cancel Order
+      </button>
+    <% else %>
+      <button type="button" class="btn btn-success" 
+      data-reflex="click->FinishOrderReflex#finish"
+      data-order-id="<%= @order.id %>"
+      >finish order
+      </button>
+    <% end %>
   </div>
 <% end %>
