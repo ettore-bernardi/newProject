@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         
-        format.html { redirect_to @order, notice: "Order was successfully created." }
+        format.html { redirect_to edit_order_path(@order), notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
       @order.order_date = Time.now
       @order.total = @order.set_total
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: "Order was successfully updated." }
+        format.html { redirect_to edit_order_path(@order), notice: "Order was successfully updated." }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit, status: :unprocessable_entity }
