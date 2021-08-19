@@ -5,9 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
 
-  def admin
-    if user.role == 1
+  def admin?
+    if role == 1
       true
+    elsif
+      false
     end
   end
 end

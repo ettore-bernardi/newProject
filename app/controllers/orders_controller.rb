@@ -2,8 +2,17 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
 
   def index
-    @orders = current_user.orders
+    if current_user.admin?
+      @orders = Order.all
+    else
+      @orders = current_user.orders
+    end
   end
+
+  def history
+    
+  end
+  
 
   def show
   end
@@ -33,7 +42,6 @@ class OrdersController < ApplicationController
 
   def update
     respond_to do |format|
-      @order.order_date = Time.now
       @order.total = @order.set_total
       if @order.update(order_params)
         format.html { redirect_to edit_order_path(@order), notice: "Order was successfully updated." }
@@ -55,7 +63,11 @@ class OrdersController < ApplicationController
 
   private
     def set_order
-      @order = current_user.orders.find(params[:id])
+      if current_user.admin?
+        @order = Order.find(params[:id])
+      else
+        @order = current_user.orders.find(params[:id])
+      end
     end
 
 

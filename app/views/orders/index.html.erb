@@ -1,33 +1,59 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Orders</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Total</th>
-      <th>User</th>
-      <th>Order date</th>
-      <th>Done</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.total %></td>
-        <td><%= order.user_id %></td>
-        <td><%= order.order_date %></td>
-        <td><%= order.done %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="d-flex justify-content-between">
+  <h1 class="text-center">Orders</h1>
+  <div>
+    <% unless current_user.admin? %>
+      <%= link_to 'New Order', new_order_path, class:'btn btn-primary' %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Order', new_order_path %>
+  </div>
+</div>
+  <% order_count = 0 %>
+  <div class="row">
+    <% @orders.each do |order| %>
+      <% unless order.done %>
+        <div class="col-md-3 m-md-0 my-2">
+          <% order_count += 1 %>
+          <div class="card orders-card">
+            <div class="card-header d-flex justify-content-between">
+              <h5 class="card-title">Order: <%= order_count %></h5>
+              <div>
+                <% if order.done %>
+                  <span class="badge bg-primary"> finished </span>
+                <% else %>
+                <span class="badge bg-warning text-dark"> in production </span>
+                <% end %>
+              </div>
+            </div>
+              <div class="card-body overflow-auto p-0">
+                  <table class="table table-striped border m-0">
+                    <thead>
+                      <tr>
+                        <th colspan="2" class="text-center">Details</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for items in order.items %>
+                      <tr>
+                        <th scope="col"><%= items.product.name %></th>
+                        <th scope="col"><%= items.quantity %></th>
+                      </tr>
+                          <% end %>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                  <%= link_to 'Show', order, class:'btn btn-primary' %>
+                  <% if current_user.admin? %>
+                    <%= link_to 'Edit', edit_order_path(order), class:'btn btn-primary' %>
+                  <% end %>
+                </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+</div>
+<%= link_to 'Back', root_path, class:'btn btn-secondary mt-2' %>

@@ -3,24 +3,17 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="rounded bg-primary text-light w-25 text-center py-2 fw-bold">total: $<%= @order.set_total %> </div>
-
-  <div class="form-inputs">
-    <% unless current_user.role %>
-      <%= f.input :done %>
-    <% end %>
-  </div>
-  
     <div class="cocoon">
-    <%= f.simple_fields_for :items do |item| %>
-      <%= render 'item_fields', f: item %>
-    <% end %>
-    <div>
-      <%= link_to_add_association "add item", f, :items %>
+      <%= f.simple_fields_for :items do |item| %>
+        <%= render 'item_fields', f: item %>
+      <% end %>
+      <div>
+        <%= link_to_add_association "add item", f, :items %>
+      </div>
     </div>
-  </div>
 
   <div class="form-actions">
-      <%= f.button :submit, 'Update order' %>
+    <%= f.button :submit, 'Update order' %>
     <% if order.ordered? %>
       <button type="button" class="btn btn-danger" 
       data-reflex="click->FinishOrderReflex#cancel"
