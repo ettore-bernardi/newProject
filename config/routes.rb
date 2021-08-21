@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'management/index'
   root 'home#index'
   
   resources :products

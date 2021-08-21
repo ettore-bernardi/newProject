@@ -11,5 +11,5 @@ class User < ApplicationRecord
     elsif
       false
     end
-  end
+  end  
 end
