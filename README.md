@@ -24,5 +24,5 @@
 
 <h4>In your browser</h4>
 <ol>
-    <li>Go to <code>http://localhost:3000/</code> you can make log in with <code>adm@site.com</code> to have administrator access. ou with <code>clien@site.com to have normal access</code></li>
+    <li>Go to <code>http://localhost:3000/</code> you can make log in with <code>adm@site.com</code> to have administrator access. or with <code>clien@site.com</code> to have normal access</li>
 </ol>
