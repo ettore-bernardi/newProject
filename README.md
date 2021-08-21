@@ -14,8 +14,8 @@
 <h2>Setup</h2>
 <h4>In your terminal:</h4>
 <ol>
-    <li>Clone this Repo <code>git@github.com:ettore-bernardi/newproject.git</code></li>
-    <li>Go into the directory <code>cd newproject</code></li>
+    <li>Clone this Repo <code>git@github.com:ettore-bernardi/ordersApp.git</code></li>
+    <li>Go into the directory <code>cd ordersApp</code></li>
     <li>Do the bundle istalation <code>bundle install</code></li>
     <li>Do the yarn instalation <code>yarn install</code></li>
     <li>Crete the Database <code>rake db:create db:migrate db:seed</code></li>
