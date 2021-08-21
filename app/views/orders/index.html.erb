@@ -19,9 +19,13 @@
               <div>
                 <% if order.done %>
                   <span class="badge bg-primary"> finished </span>
+                <% elsif order.items.any? %>
+                  <span class="badge bg-warning text-dark"> in production </span>
                 <% else %>
-                <span class="badge bg-warning text-dark"> in production </span>
+                  <span class="badge bg-danger text-dark"> please add an item </span>
                 <% end %>
+                
+
               </div>
             </div>
               <div class="card-body overflow-auto p-0">

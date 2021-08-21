@@ -9,3 +9,4 @@ require("channels")
 import "bootstrap"
 import "stylesheets/application"
 import "controllers"
+import 'bootstrap-icons/font/bootstrap-icons.css';

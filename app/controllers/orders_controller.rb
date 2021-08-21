@@ -19,6 +19,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = current_user.orders.build
+    @order.items.build
   end
 
   def edit
@@ -72,6 +73,6 @@ class OrdersController < ApplicationController
 
 
     def order_params
-      params.require(:order).permit(:total, :user_id, :order_date, :done, items_attributes:[:id, :product_id, :quantity, :_destroy])
+      params.require(:order).permit(:done, items_attributes:[:id, :product_id, :quantity, :_destroy])
     end
 end

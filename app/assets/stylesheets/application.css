@@ -10,8 +10,23 @@
     height: 300px;
 }
 
+.items-card{
+    height: 175px;
+}
+
 .order-card-list{
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.bi-plus-square-fill{
+    color: green;
+}
+.bi-dash-square-fill{
+    color: red;
+}
+
+#total-order-price{
+    width: 150px;
 }
