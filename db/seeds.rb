@@ -9,3 +9,4 @@ User.create!(
     email: 'client@site.com',
     password: '123321',
 )
+
