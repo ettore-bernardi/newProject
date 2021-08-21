@@ -2,37 +2,53 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="rounded bg-primary text-light w-25 text-center py-2 fw-bold">total: $<%= @order.set_total %> </div>
-
-  <div class="form-inputs">
-    <% unless current_user.role %>
-      <%= f.input :done %>
-    <% end %>
-  </div>
-  
-    <div class="cocoon">
-    <%= f.simple_fields_for :items do |item| %>
-      <%= render 'item_fields', f: item %>
-    <% end %>
-    <div>
-      <%= link_to_add_association "add item", f, :items %>
+  <div class="row mb-2">
+    <div class="form-actions mb-2 col-md-3">
+      <div class="card h-100">
+        <div class="card-header">
+          Order Options
+        </div>
+        <div class="card-body text-center">
+          <div>
+            <%= f.button :submit, 'Update order', class:'btn btn-primary w-75 mb-2' %>
+          </div>
+          <% if order.items.any? %>
+            <% if order.ordered? %>
+              <button type="button" class="btn btn-danger w-75 mb-2" data-reflex="click->FinishOrderReflex#cancel" data-order-id="<%= @order.id %>">Cancel Order</button>
+            <% else %>
+              <button type="button" class="btn btn-success w-75 mb-2" data-reflex="click->FinishOrderReflex#finish" data-order-id="<%= @order.id %>">finish order</button>
+            <% end %>
+          <% end %>
+          <% if order.total != nil %>
+          <div>
+            <%= link_to 'Cancel Order', @order, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger w-75' %>
+          </div>
+          <% end %>
+        </div>
+        <div class="card-footer">
+          <div class="input-group mt-2 d-flex justify-content-center">
+            <span class="input-group-text">$</span>
+            <% if order.set_total > 0 %>
+              <input type="text" placeholder="<%= @order.set_total %>" id="total-order-price" class="rounded border border-primary text-dark text-center py-2 fw-bold" disabled readonly> 
+            <% else %>
+              <input type="text" placeholder="click update" id="total-order-price" class="rounded border border-primary text-dark text-center py-2 fw-bold" disabled readonly>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cocoon row col-md-9">
+      <%= f.simple_fields_for :items do |item| %>
+        <%= render 'item_fields', f: item %>
+      <% end %>
+      <div class="col-md-1">
+        <%= link_to_add_association "", f, :items, class:'bi bi-plus-square-fill fw-bold fs-3' %>
+      </div>
     </div>
   </div>
+    
+<div class="d-flex justify-content-between">
+  <%= link_to 'Back', orders_path, class:'btn btn-secondary' %>
+</div>
 
-  <div class="form-actions">
-      <%= f.button :submit, 'Update order' %>
-    <% if order.ordered? %>
-      <button type="button" class="btn btn-danger" 
-      data-reflex="click->FinishOrderReflex#cancel"
-      data-order-id="<%= @order.id %>"
-      >Cancel Order
-      </button>
-    <% else %>
-      <button type="button" class="btn btn-success" 
-      data-reflex="click->FinishOrderReflex#finish"
-      data-order-id="<%= @order.id %>"
-      >finish order
-      </button>
-    <% end %>
-  </div>
 <% end %>

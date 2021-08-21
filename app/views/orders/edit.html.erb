@@ -1,8 +1,45 @@
-<div class="container">
-    <h1>New Order</h1>
+    <h1 class="text-center">Your Order</h1>
     
-    <%= render 'form', order: @order %>
-    
-    <%= link_to 'Back', orders_path %>
+    <% if current_user.admin? %>
+        <table class="table table-striped border m-0">
+            <thead>
+            <tr>
+                <th colspan="2" class="text-center"> Order Details</th>
+            </tr>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for items in @order.items %>
+            <tr>
+                <th scope="col"><%= items.product.name %></th>
+                <th scope="col"><%= items.quantity %></th>
+            </tr>
+                <% end %>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="2"><div class="rounded bg-primary text-light w-25 text-center py-2 fw-bold w-100">total price: $<%= @order.set_total %> </div></th>
+            </tr>
+            </tfoot>
+        </table>
 
-</div>
+        <% if @order.done? %>
+            <button type="button" class="btn btn-danger" 
+            data-reflex="click->FinishOrderReflex#undone"
+            data-order-id="<%= @order.id %>"
+            >Return order
+            </button>
+        <% else %>
+            <button type="button" class="btn btn-success" 
+            data-reflex="click->FinishOrderReflex#done"
+            data-order-id="<%= @order.id %>"
+            >Complete order
+            </button>
+        <% end %>
+        
+    <%else%>
+        <%= render 'form', order: @order %>
+    <% end %>
