@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   has_many :orders
-  has_many :addresses
-
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
@@ -12,4 +11,12 @@ class User < ApplicationRecord
       false
     end
   end  
+
+  def resgistration_completed?
+    if address == nil || city == nil || state == nil || zipCode == nil || phone == nil
+      false
+    else
+      true
+    end
+  end
 end

@@ -14,14 +14,14 @@
           </div>
           <% if order.items.any? %>
             <% if order.ordered? %>
-              <button type="button" class="btn btn-danger w-75 mb-2" data-reflex="click->FinishOrderReflex#cancel" data-order-id="<%= @order.id %>">Cancel Order</button>
+              <button type="button" class="btn btn-warning w-75 mb-2" data-reflex="click->FinishOrderReflex#cancel" data-order-id="<%= @order.id %>">Cancel Order</button>
             <% else %>
               <button type="button" class="btn btn-success w-75 mb-2" data-reflex="click->FinishOrderReflex#finish" data-order-id="<%= @order.id %>">finish order</button>
             <% end %>
           <% end %>
           <% if order.total != nil %>
           <div>
-            <%= link_to 'Cancel Order', @order, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger w-75' %>
+            <%= link_to 'Delete Order', @order, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger w-75' %>
           </div>
           <% end %>
         </div>

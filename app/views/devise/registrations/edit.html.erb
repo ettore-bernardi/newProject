@@ -23,8 +23,22 @@
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
+  <div class="border">
+    <h3>Additional</h3>
+    <%= f.input :name %>
+    <%= f.input :surname %>
+    <%= f.input :username %>
+    <%= f.input :phone %>
+    <%= f.input :address %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :zipCode %>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit, "Update" %>
+  </div>
+
   </div>
 <% end %>
 

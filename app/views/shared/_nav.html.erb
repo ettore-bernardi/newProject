@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href=" <%= url_for(root_path) %> ">Salsichão do totore</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid container">
+       <a class="navbar-brand fs-3 fw-bold" href=" <%= url_for(root_path) %> "> <i class="fas fa-hotdog fs-2 me-2"> </i>Salsichão do totore</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -13,9 +13,14 @@
               <%= image_tag("user_avatar.png", width: 50) %>
             </div>
             <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton1">
-              <li class="border-bottom">Signed in as<br> <p class="fw-bold"><%= current_user.email %></p></li>
-              <li><%= link_to "Address", addresses_path, class:'dropdown-item' %></li>
+              <% if current_user.username != nil %>
+                <li class="border-bottom">Signed in as<br> <p class="fw-bold"><%= current_user.username %></p></li>
+              <% else %>
+                <li class="border-bottom">Signed in as<br> <p class="fw-bold"><%= current_user.email %></p></li>
+              <% end %>
               <li><%= link_to "Edit Profile", edit_user_registration_path, class:'dropdown-item' %></li>
+              <li><%= link_to 'My Active Orders', orders_path, class:"dropdown-item" %></li>
+              <li class="border-bottom"><%= link_to 'Order History', products_path, class:"dropdown-item" %></li>
               <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete, class:'dropdown-item text-danger'%></li>
             </ul>
           </div>
