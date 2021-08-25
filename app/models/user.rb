@@ -7,9 +7,10 @@ class User < ApplicationRecord
   has_one :userInfo
   accepts_nested_attributes_for :userInfo, reject_if: :all_blank, allow_destroy: true
 
-  
-
-
+  def with_userInfo
+    build_userInfo if userInfo.nil?
+    self
+  end
 
   def registration_completed?
     if userInfo.present? 
