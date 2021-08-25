@@ -1,3 +1,7 @@
+section{
+    height: 100vh;
+}
+
 .adm-button{
     text-decoration: none;
     border-radius: 20px;
@@ -29,4 +33,21 @@
 
 #total-order-price{
     width: 150px;
+}
+
+.quantity-show{
+    width: 25px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input:focus{
+  outline: none;
+  border-bottom: 1px solid black !important;
 }

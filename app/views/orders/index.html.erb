@@ -19,13 +19,14 @@
             <div>
                <% if order.done %>
                <span class="badge bg-primary"> finished </span>
-               <% elsif order.items.any? %>
+               <% elsif order.ordered? %>
                <span class="badge bg-warning text-dark"> in production </span>
                <% else %>
-               <span class="badge bg-danger text-dark"> please add an item </span>
+               <span class="badge bg-danger text-dark"> unfinished </span>
                <% end %>
             </div>
          </div>
+         <span class="badge text-dark"> <%= time_ago_in_words(order.created_at) %> ago</span>
          <div class="card-body overflow-auto p-0">
             <table class="table table-striped border m-0">
                <thead>

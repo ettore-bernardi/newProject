@@ -11,8 +11,10 @@
 
   </head>
 
-  <body class="container">
+  <body>
     <%= render 'shared/nav' %>
-    <%= yield %>
+    <section class="container bg-light pt-3">
+      <%= yield %>
+    </section>
   </body>
 </html>
