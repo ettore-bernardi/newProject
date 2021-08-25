@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2 class="text-center">Edit <%= resource_name.to_s.humanize %></h2>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 <div class="row d-flex justify-content-between px-4">
@@ -35,19 +35,19 @@
             <%= info.input :username %>
           </div>
           <div class="col-md-3">
-            <%= info.input :phone, :data => {:mask=> '999-999-9999'} %>
+            <%= info.input :phone, required: true %>
           </div>
           <div class="col-md-12">
-            <%= info.input :address %>
+            <%= info.input :address, required: true %>
           </div>
           <div class="col-md-5">
-            <%= info.input :city %>
+            <%= info.input :city, required: true %>
           </div>
           <div class="col-md-4">
-          <%= info.input :state %>
+          <%= info.input :state, required: true %>
           </div>
           <div class="col-md-3">
-            <%= info.input :zipCode %>
+            <%= info.input :zipCode, required: true  %>
           </div>
         <% end %>
       </div>
@@ -55,17 +55,19 @@
   </div>
 </div>
 
-<div class="form-actions">
-  <%= f.input :current_password,
-              hint: "we need your current password to confirm your changes",
-              required: true,
-              input_html: { autocomplete: "current-password" } %>
-  <%= f.button :submit, "Update", class:'btn btn-primary' %>
+<div class="justify-content-between my-3 row">
+  <div class="col-md-4">
+    <%= f.input :current_password,
+                required: true,
+                input_html: { autocomplete: "current-password" } %>
+  </div>
+  <div class="form-actions col mt-4">
+    <%= f.button :submit, "Update", class:'btn btn-primary' %>
+  </div>
 </div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<div class="d-flex justify-content-between">
+  <%= link_to "Back", :back, class:'btn btn-secondary' %>
+  <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-danger' %>
+</div>
