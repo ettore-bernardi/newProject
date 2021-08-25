@@ -13,8 +13,11 @@
               <%= image_tag("user_avatar.png", width: 50) %>
             </div>
             <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton1">
+            <% if current_user.registration_completed?%>
               <li class="border-bottom">Signed in as<br> <p class="fw-bold"><%= current_user.userInfo.username %></p></li>
-              
+            <% else %>
+              <li class="border-bottom">Signed in as<br> <p class="fw-bold"><%= current_user.email %></p></li>
+            <% end %>
               <li><%= link_to "Edit Profile", edit_user_registration_path, class:'dropdown-item' %></li>
               <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete, class:'dropdown-item text-danger'%></li>
             </ul>

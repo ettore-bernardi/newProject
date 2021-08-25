@@ -6,7 +6,7 @@
     </div>
 <% else %>
     <div class="d-flex justify-content-center row">
-        <% if current_user.resgistration_completed? %>
+        <% if current_user.registration_completed? %>
             <%= link_to 'My Active Orders', orders_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
             <%= link_to 'Order History', management_index_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
         <% else %>

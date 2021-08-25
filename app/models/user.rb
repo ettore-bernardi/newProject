@@ -7,11 +7,19 @@ class User < ApplicationRecord
   has_one :userInfo
   accepts_nested_attributes_for :userInfo, reject_if: :all_blank, allow_destroy: true
 
-  def resgistration_completed?
-    if userInfo.address == nil || userInfo.city == nil || userInfo.state == nil || userInfo.zipCode == nil || userInfo.phone == nil
-      false
+  
+
+
+
+  def registration_completed?
+    if userInfo.present? 
+      if userInfo.address == nil || userInfo.city == nil || userInfo.state == nil || userInfo.zipCode == nil || userInfo.phone == nil
+        false
+      else
+        true
+      end
     else
-      true
+      false
     end
   end
 

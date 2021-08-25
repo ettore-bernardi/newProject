@@ -19,10 +19,10 @@
             <div>
                <% if order.done %>
                <span class="badge bg-primary"> finished </span>
-               <% elsif order.items.any? %>
+               <% elsif order.ordered? %>
                <span class="badge bg-warning text-dark"> in production </span>
                <% else %>
-               <span class="badge bg-danger text-dark"> please add an item </span>
+               <span class="badge bg-danger text-dark"> unfinished </span>
                <% end %>
             </div>
          </div>
