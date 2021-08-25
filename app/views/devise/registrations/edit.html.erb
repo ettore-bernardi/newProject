@@ -1,31 +1,67 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+<div class="row d-flex justify-content-between px-4">
+  <div class="form-inputs col-md-3 card p-0">
+    <div class="card-header">Security</div>
+    <div class="card-body">
+      <%= f.input :email, required: true, autofocus: false %>
+      
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <% end %>
+    
+      <%= f.input :password, label:'New password',
+                  hint: "leave it blank if you don't want to change it",
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation, label:'Confirm new password',
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+    </div>
+  </div>  
+  <div class="card col-md-8 p-0">
+    <div class="card-header">Personal information</div>
+    <div class="card-body">
+      <div class="row">
+        <%= f.simple_fields_for :userInfo do |info| %>
+          <div class="col-md-6">
+            <%= info.input :name %>
+          </div>
+          <div class="col-md-6">
+            <%= info.input :surname, class:'col-md6' %>
+          </div>
+          <div class="col-md-6">
+            <%= info.input :username %>
+          </div>
+          <div class="col-md-3">
+            <%= info.input :phone, :data => {:mask=> '999-999-9999'} %>
+          </div>
+          <div class="col-md-12">
+            <%= info.input :address %>
+          </div>
+          <div class="col-md-5">
+            <%= info.input :city %>
+          </div>
+          <div class="col-md-4">
+          <%= info.input :state %>
+          </div>
+          <div class="col-md-3">
+            <%= info.input :zipCode %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
+<div class="form-actions">
+  <%= f.input :current_password,
+              hint: "we need your current password to confirm your changes",
+              required: true,
+              input_html: { autocomplete: "current-password" } %>
+  <%= f.button :submit, "Update", class:'btn btn-primary' %>
+</div>
 <% end %>
 
 <h3>Cancel my account</h3>

@@ -1,5 +1,9 @@
 class ManagementController < ApplicationController
   def index
-    @orders = Order.all
+    if current_user.admin?
+      @orders = Order.all
+    else
+      @orders = current_user.orders
+    end
   end
 end

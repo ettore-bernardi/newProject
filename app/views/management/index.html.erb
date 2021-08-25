@@ -6,7 +6,6 @@
       <div class="card orders-card mb-3">
          <div class="card-header d-flex justify-content-between">
             <h5 class="card-title">Order: <%= order_count %></h5>
-            <span class="badge text-dark"> <%= order.created_at.strftime("%d/%m/%Y") %></span>
             <div>
                <% if order.done %>
                   <span class="badge bg-primary"> finished </span>
@@ -17,6 +16,7 @@
                <% end %>
             </div>
          </div>
+         <span class="badge text-dark"> <%= order.created_at.strftime("%d/%m/%Y") %></span>
          <div class="card-body overflow-auto p-0">
             <table class="table table-striped border m-0">
                <thead>
@@ -47,5 +47,6 @@
          </div>
       </div>
    </div>
-<% end %>
+   <% end %>
+</div>
 <%= link_to 'Back', root_path, class:'btn btn-secondary mt-2' %>

@@ -1,3 +1,5 @@
+//= require jquery_nested_form
+
 import "cocoon";
 require('jquery')
 
@@ -10,3 +12,5 @@ import "bootstrap"
 import "stylesheets/application"
 import "controllers"
 import 'bootstrap-icons/font/bootstrap-icons.css';
+
+jasny/jasny-bootstrap.min.js

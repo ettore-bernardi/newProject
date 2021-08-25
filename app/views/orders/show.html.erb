@@ -1,34 +1,38 @@
 <p id="notice"><%= notice %></p>
+  <div class="d-flex justify-content-between">
+    <div class="input-group mt-2 d-flex">
+      <span class="input-group-text">$</span>
+      <input type="text" placeholder="<%= @order.set_total %>" id="total-order-price" class="rounded border border-primary text-dark text-center py-2 fw-bold" disabled readonly> 
+    </div>
+    <div>
+    <strong>Ordered:</strong>
+    <%= @order.created_at.strftime("%d/%m/%Y") %>
+    </div>
+  </div>
 
-<p>
-  <strong>Total:</strong>
-  <%= @order.total %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @order.user_id %>
-</p>
-
-<p>
-  <strong>Order date:</strong>
-  <%= @order.order_date %>
-</p>
-
-<p>
-  <strong>Done:</strong>
-  <%= @order.done %>
-</p>
-
-<h4>items</h4>
+<h4>Sumary</h4>
   <ul>
-    <% for @item in @order.items %>
-      <div>
-        Product: <%= @item.product.name %>
-        Price: <%= @item.product.price*@item.quantity %>
-      </div>
-    <% end %>
+        <table class="table border m-0">
+            <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col" class="border-start">Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for items in @order.items %>
+            <tr>
+                <th scope="col"><%= items.product.name %></th>
+                <th scope="col" class="quantity-show text-center border-start"><%= items.quantity %></th>
+            </tr>
+                <% end %>
+            </tbody>
+        </table>
   </ul>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Back', orders_path, class:'btn btn-secondary' %>
+<% unless @order.ordered? %>
+  <%= link_to 'Edit', edit_order_path, class:'btn btn-primary' %>
+<% else %>
+  <%= link_to 'Edit', @order, class:'btn btn-warning', data: { confirm: 'You can not eddit a finished order!' } %>
+<% end %>
