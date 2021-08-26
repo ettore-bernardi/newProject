@@ -1,5 +1,6 @@
-class FinishOrderReflex < ApplicationReflex
+# frozen_string_literal: true
 
+class FinishOrderReflex < ApplicationReflex
   def finish
     order = Order.find(element.dataset[:order_id])
     order.update(ordered: true, order_date: Time.now)
