@@ -1,15 +1,15 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!
-    before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
+  protected
 
-
-    protected
-    
-    def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:account_update) do |u|
-            u.permit(:email, :password, :password_confirmation, :current_password, userInfo_attributes: [:id, :name, :surname, :username, :phone, :address, :city, :state, :zipCode])
-        end
-     end 
-
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:account_update) do |u|
+      u.permit(:email, :password, :password_confirmation, :current_password,
+               userInfo_attributes: %i[id name surname username phone address city state zipCode])
+    end
+  end
 end

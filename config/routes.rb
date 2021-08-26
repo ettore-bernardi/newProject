@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'management/index'
   root 'home#index'
-  
+
   resources :products
   resources :orders
   devise_for :users

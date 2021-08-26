@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Order < ApplicationRecord
   belongs_to :user
   has_many :products, through: :items, source: :format
@@ -7,12 +8,12 @@ class Order < ApplicationRecord
 
   def set_total
     @price = 0
-    for @item in items
-      unless @item.product == nil
-        @price += @item.product.price*@item.quantity
+    items.each do |item|
+      unless item.product == nil
+        @price += item.product.price * item.quantity
       end
     end
     @price
   end
-  
+
 end

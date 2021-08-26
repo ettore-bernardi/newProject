@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class ManagementController < ApplicationController
   def index
-    if current_user.admin?
-      @orders = Order.all
-    else
-      @orders = current_user.orders
-    end
+    @orders = if current_user.admin?
+                Order.all
+              else
+                current_user.orders
+              end
   end
 end
