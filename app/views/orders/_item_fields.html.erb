@@ -1,7 +1,7 @@
 <div class="nested-fields col-md-4 card items-card">
-    <%= f.association :product, collection: Product.all.order(:price).map{ |product| ["$#{product.price} | " + product.name, product.id]  }, prompt: "Select a Product", label: 'Item' %>
+    <%= f.association :product, collection: Product.all.order(:price).map{ |product| ["$#{product.price} | " + product.name, product.id]  }, prompt: t('views.item.form.select'), label: 'Item' %>
     <%= @item_sel %>
-    <%= f.input :quantity, require: true, label: '*Quantity'%>
+    <%= f.input :quantity, require: true, label: t('views.item.form.quantity')%>
 
     <%= link_to_remove_association "", f, class:'bi bi-dash-square-fill fs-3 fw-bold' %>
 </div>

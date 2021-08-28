@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 <div class="d-flex justify-content-between">
-   <h1 class="text-center">Orders</h1>
+   <h1 class="text-center"><%= t('views.order.index.title') %></h1>
    <div>
       <% unless current_user.admin? %>
-      <%= link_to 'New Order', new_order_path, class:'btn btn-primary' %>
+      <%= link_to "#{t('views.order.index.new_order')}", new_order_path, class:'btn btn-primary' %>
       <% end %>
    </div>
 </div>
@@ -15,27 +15,27 @@
       <% order_count += 1 %>
       <div class="card orders-card mb-2">
          <div class="card-header d-flex justify-content-between">
-            <h5 class="card-title">Order: <%= order_count %></h5>
+            <h5 class="card-title"> <%=  "#{t('activerecord.attributes.order.order')}: #{order_count}" %></h5>
             <div>
                <% if order.done %>
-               <span class="badge bg-primary"> finished </span>
+               <span class="badge bg-primary"> <%= t('activerecord.attributes.order.status.finished') %>% </span>
                <% elsif order.ordered? %>
-               <span class="badge bg-warning text-dark"> in production </span>
+               <span class="badge bg-warning text-dark"> <%= t('activerecord.attributes.order.status.production') %> </span>
                <% else %>
-               <span class="badge bg-danger text-dark"> unfinished </span>
+               <span class="badge bg-danger text-dark"> <%= t('activerecord.attributes.order.status.unfinished') %> </span>
                <% end %>
             </div>
          </div>
-         <span class="badge text-dark"> <%= time_ago_in_words(order.created_at) %> ago</span>
+         <span class="badge text-dark"> <%= time_ago_in_words(order.created_at) %></span>
          <div class="card-body overflow-auto p-0">
             <table class="table table-striped border m-0">
                <thead>
                   <tr>
-                     <th colspan="2" class="text-center">Details</th>
+                     <th colspan="2" class="text-center"><%= t('views.index.order.details') %></th>
                   </tr>
                   <tr>
-                     <th scope="col">Product</th>
-                     <th scope="col">Quantity</th>
+                     <th scope="col"><%= t('activerecord.attributes.product.name') %></th>
+                     <th scope="col"><%= t('activerecord.attributes.item.quantity') %></th>
                   </tr>
                </thead>
                <tbody>
@@ -49,9 +49,9 @@
             </table>
          </div>
          <div class="card-footer d-flex justify-content-between">
-            <%= link_to 'Show', order, class:'btn btn-primary' %>
+            <%= link_to "#{t('activerecord.buttons.show')}", order, class:'btn btn-primary' %>
             <% if current_user.admin? %>
-            <%= link_to 'Edit', edit_order_path(order), class:'btn btn-primary' %>
+            <%= link_to "#{t('activerecord.buttons.edit')}", edit_order_path(order), class:'btn btn-primary' %>
             <% end %>
          </div>
       </div>
@@ -59,4 +59,4 @@
    <% end %>
    <% end %>
 </div>
-<%= link_to 'Back', root_path, class:'btn btn-secondary mt-2' %>
+<%= link_to "#{t('activerecord.buttons.back')}", root_path, class:'btn btn-secondary mt-2' %>
