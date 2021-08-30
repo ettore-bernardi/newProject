@@ -5,18 +5,18 @@
       <input type="text" placeholder="<%= @order.set_total %>" id="total-order-price" class="rounded border border-primary text-dark text-center py-2 fw-bold" disabled readonly> 
     </div>
     <div>
-    <strong>Ordered:</strong>
+    <strong><%= t('views.order.show.ordered') %>:</strong>
     <%= @order.created_at.strftime("%d/%m/%Y") %>
     </div>
   </div>
 
-<h4>Sumary</h4>
+<h4><%= t('views.order.show.sumary') %></h4>
   <ul>
         <table class="table border m-0">
             <thead>
             <tr>
-                <th scope="col">Product</th>
-                <th scope="col" class="border-start">Quantity</th>
+                <th scope="col"><%= t('views.order.show.product') %></th>
+                <th scope="col" class="border-start"><%= t('views.order.show.quantity') %></th>
             </tr>
             </thead>
             <tbody>
@@ -29,10 +29,10 @@
             </tbody>
         </table>
   </ul>
-
-<%= link_to 'Back', orders_path, class:'btn btn-secondary' %>
+  
+<%= link_to "#{t('activerecord.buttons.back')}", orders_path, class:'btn btn-secondary' %>
 <% unless @order.ordered? %>
-  <%= link_to 'Edit', edit_order_path, class:'btn btn-primary' %>
+  <%= link_to "#{t('activerecord.buttons.edit')}", edit_order_path, class:'btn btn-primary' %>
 <% else %>
-  <%= link_to 'Edit', @order, class:'btn btn-warning', data: { confirm: 'You can not eddit a finished order!' } %>
+  <%= link_to "#{t('activerecord.buttons.edit')}", @order, class:'btn btn-warning', data: { confirm: 'You can not eddit a finished order!' } %>
 <% end %>

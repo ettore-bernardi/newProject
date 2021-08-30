@@ -5,17 +5,17 @@
   <div class="form-inputs col-md-3 card p-0">
     <div class="card-header"><%= t('views.edit_user.security') %></div>
     <div class="card-body">
-      <%= f.input :email, required: true, autofocus: false, label:"#{t('activerecord.attributes.user.email')}" %>
+      <%= f.input :email, required: true, autofocus: false %>
       
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
     
-      <%= f.input :password, label:"#{t('activerecord.attributes.user.new_password')}",
+      <%= f.input :password,
                   hint: "leave it blank if you don't want to change it",
                   required: false,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation, label:"#{t('activerecord.attributes.user.confirm_new_password')}",
+      <%= f.input :password_confirmation,
                   required: false,
                   input_html: { autocomplete: "new-password" } %>
     </div>

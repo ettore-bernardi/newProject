@@ -1,6 +1,7 @@
 pt-BR:
   true: "sim"
   false: "não"
+
   confirmation: "Você tem certeza?"
   views:
     home:
@@ -26,6 +27,11 @@ pt-BR:
         update: "Atualizar pedido"
         checkbox: "Finalizado"
         cancel: "Cancelar pedido"
+      show:
+        product: "Produto"
+        quantity: "Quantidade"
+        sumary: "Resumo"
+        ordered: "Data"
     item:
       form:
         select: "Selecione um produto"
@@ -39,6 +45,7 @@ pt-BR:
       log_out: "Sair"
     product:
       new: "Novo produto"
+      edit: "Editando o produto"
     edit_user:
       title: "Editar usuario"
       security: "Segurança"
@@ -54,7 +61,7 @@ pt-BR:
         email: "Email"
         password: "Senha"
         new_password: "Nova senha"
-        confirm_new_password: "Confirme a nova senha"
+        password_confirmation: "Confirme a nova senha"
         current_password: "Senha atual"
         name: "Nome"
         surname: "Sobrenome"
@@ -64,6 +71,7 @@ pt-BR:
         city: "Cidade"
         state: "Estado"
         zip_code: "Cep"
+        remember_me: "Lembrar"
       order:
         done: "concluido"
         order: "Pedido"
