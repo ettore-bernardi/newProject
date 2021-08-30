@@ -1,17 +1,17 @@
 <% if current_user.admin? %>
     <div class="d-flex justify-content-center row">
-        <%= link_to 'Manage Active Orders', orders_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
-        <%= link_to 'Products', products_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
-        <%= link_to 'Order History', management_index_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
+        <%= link_to "#{t('views.home.index.admin.active')}", orders_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
+        <%= link_to "#{t('views.home.index.admin.products')}", products_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
+        <%= link_to "#{t('views.home.index.admin.history')}", management_index_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
     </div>
 <% else %>
     <div class="d-flex justify-content-center row">
         <% if current_user.registration_completed? %>
-            <%= link_to 'My Active Orders', orders_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
-            <%= link_to 'Order History', management_index_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
+            <%= link_to "#{t('views.home.index.client.active')}", orders_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
+            <%= link_to "#{t('views.home.index.client.history')}", management_index_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
         <% else %>
-            <div class="text-dark text-center fw-bold fs-4 mb-4"><span class="bg-warning p-2 rounded">Complete your personal information before ordering</span></div>
-            <%= link_to 'Edit Profile', edit_user_registration_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
+            <div class="text-dark text-center fw-bold fs-4 mb-4"><span class="bg-warning p-2 rounded"><%= translate 'views.home.index.client.complete_profile' %></span></div>
+            <%= link_to "#{t('views.home.index.client.edit')}", edit_user_registration_path, class:"bg-dark text-light text-center m-1 p-5 fs-1 adm-button col-md-5 col-12" %>
         <% end %>
     </div>
 <% end %>

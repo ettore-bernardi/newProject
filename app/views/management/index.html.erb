@@ -5,14 +5,14 @@
       <% order_count += 1 %>
       <div class="card orders-card mb-3">
          <div class="card-header d-flex justify-content-between">
-            <h5 class="card-title">Order: <%= order_count %></h5>
+            <h5 class="card-title"><%= "#{t('activerecord.attributes.order.order')}: #{order_count}" %></h5>
             <div>
                <% if order.done %>
-                  <span class="badge bg-success"> delivered </span>
+                  <span class="badge bg-success"> <%= t('activerecord.attributes.order.status.delivered') %> </span>
                <% elsif order.ordered? %>
-                  <span class="badge bg-warning text-dark"> in production </span>
+                  <span class="badge bg-warning text-dark"> <%= t('activerecord.attributes.order.status.production') %> </span>
                <% else %>
-                  <span class="badge bg-danger text-dark"> unfinished </span>
+                  <span class="badge bg-danger text-dark"> <%= t('activerecord.attributes.order.status.unfinished') %> </span>
                <% end %>
             </div>
          </div>
@@ -21,11 +21,11 @@
             <table class="table table-striped border m-0">
                <thead>
                   <tr>
-                     <th colspan="2" class="text-center">Details</th>
+                     <th colspan="2" class="text-center"><%= t('views.management.details') %></th>
                   </tr>
                   <tr>
-                     <th scope="col">Product</th>
-                     <th scope="col">Quantity</th>
+                     <th scope="col"><%= t('activerecord.attributes.product.name') %></th>
+                     <th scope="col"><%= t('activerecord.attributes.item.quantity') %></th>
                   </tr>
                </thead>
                <tbody>
@@ -43,10 +43,10 @@
                <span class="input-group-text">$</span>
                <input type="text" placeholder="<%= order.set_total %>" id="total-order-price" class="rounded border border-primary text-dark text-center py-2 fw-bold w-25 " disabled readonly> 
             </div>
-            <%= link_to 'Show', order, class:'btn btn-primary' %>
+            <%= link_to "#{t('activerecord.buttons.show')}", order, class:'btn btn-primary' %>
          </div>
       </div>
    </div>
    <% end %>
 </div>
-<%= link_to 'Back', root_path, class:'btn btn-secondary mt-2' %>
+<%= link_to "#{t('activerecord.buttons.back')}", root_path, class:'btn btn-secondary mt-2' %>

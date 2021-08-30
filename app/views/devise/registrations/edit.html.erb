@@ -1,9 +1,9 @@
-<h2 class="text-center">Edit <%= resource_name.to_s.humanize %></h2>
+<h2 class="text-center"><%= t('views.edit_user.title') %></h2>
 <%= simple_nested_form_for([resource_name, resource.with_userInfo], url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 <div class="row d-flex justify-content-between px-4">
   <div class="form-inputs col-md-3 card p-0">
-    <div class="card-header">Security</div>
+    <div class="card-header"><%= t('views.edit_user.security') %></div>
     <div class="card-body">
       <%= f.input :email, required: true, autofocus: false %>
       
@@ -11,43 +11,43 @@
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
     
-      <%= f.input :password, label:'New password',
+      <%= f.input :password,
                   hint: "leave it blank if you don't want to change it",
                   required: false,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation, label:'Confirm new password',
+      <%= f.input :password_confirmation,
                   required: false,
                   input_html: { autocomplete: "new-password" } %>
     </div>
   </div>  
   <div class="card col-md-8 p-0">
-    <div class="card-header">Personal information</div>
+    <div class="card-header"><%= t('views.edit_user.personal') %></div>
     <div class="card-body">
       <div class="row">
         <%= f.simple_fields_for :userInfo do |info| %>
           <div class="col-md-6">
-            <%= info.input :name %>
+            <%= info.input :name, label:"#{t('activerecord.attributes.user.name')}" %>
           </div>
           <div class="col-md-6">
-            <%= info.input :surname, class:'col-md6' %>
+            <%= info.input :surname, label:"#{t('activerecord.attributes.user.surname')}" %>
           </div>
           <div class="col-md-6">
-            <%= info.input :username %>
+            <%= info.input :username, label:"#{t('activerecord.attributes.user.username')}" %>
           </div>
           <div class="col-md-3">
-            <%= info.input :phone, required: true %>
+            <%= info.input :phone, required: true, label:"#{t('activerecord.attributes.user.phone')}" %>
           </div>
           <div class="col-md-12">
-            <%= info.input :address, required: true %>
+            <%= info.input :address, required: true, label:"#{t('activerecord.attributes.user.address')}" %>
           </div>
           <div class="col-md-5">
-            <%= info.input :city, required: true %>
+            <%= info.input :city, required: true, label:"#{t('activerecord.attributes.user.city')}" %>
           </div>
           <div class="col-md-4">
-          <%= info.input :state, required: true %>
+          <%= info.input :state, required: true, label:"#{t('activerecord.attributes.user.state')}" %>
           </div>
           <div class="col-md-3">
-            <%= info.input :zipCode, required: true  %>
+            <%= info.input :zipCode, required: true, label:"#{t('activerecord.attributes.user.zip_code')}"  %>
           </div>
         <% end %>
       </div>
@@ -57,17 +57,17 @@
 
 <div class="justify-content-between my-3 row">
   <div class="col-md-4">
-    <%= f.input :current_password,
+    <%= f.input :current_password, label:"#{t('activerecord.attributes.user.current_password')}",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
   </div>
   <div class="form-actions col mt-4">
-    <%= f.button :submit, "Update", class:'btn btn-primary' %>
+    <%= f.button :submit, "#{t('activerecord.buttons.update')}", class:'btn btn-primary' %>
   </div>
 </div>
 <% end %>
 
 <div class="d-flex justify-content-between">
-  <%= link_to "Back", :back, class:'btn btn-secondary' %>
-  <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-danger' %>
+  <%= link_to "#{t('activerecord.buttons.back')}", :back, class:'btn btn-secondary' %>
+  <%= link_to "#{t('views.edit_user.cancel')}", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-danger' %>
 </div>
