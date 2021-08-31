@@ -1,33 +1,109 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  true: "no"
+  false: "yes"
+  views:
+    home:
+      index:
+        client:
+          history: "Order history"
+          active: "Active orders"
+          edit: "Edit profile"
+          complete_profile: "Complete your profile information to make a order"
+        admin:
+          history: "Manage active orders"
+          active: "Active orders"   
+          products: "Products"
+          history: "Order history"
+    order:
+      index:
+        title: "Orders"
+        new_order: "New orders"
+        details: "Details"
+      form:
+        title: "Your order"
+        options: "Order options"
+        update: "Update order"
+        checkbox: "Finished"
+        cancel: "Cancel order"
+      show:
+        product: "Products"
+        quantity: "Quantity"
+        sumary: "Sumary"
+        ordered: "Ordered"
+    item:
+      form:
+        select: "Select a product"
+        quantity: "Quantity"
+    management:
+      details: "Details"
+    nav:
+      title: "Ettore's hot dog"
+      signed: "Signed as"
+      edit_profile: "Edit profile"
+      log_out: "Log_out"
+    product:
+      new: "New product"
+      edit: "Editing product"
+    edit_user:
+      title: "Edit user"
+      security: "Security"
+      personal: "Personal information"
+      cancel: "Cancel account"
+
+  activerecord:
+    models:
+      product: "Product"
+      order: "Order"
+    attributes:
+      user:
+        email: "Email"
+        password: "Password"
+        new_password: "New password"
+        password_confirmation: "Confirm new password"
+        current_password: "Current password"
+        name: "Name"
+        surname: "Surname"
+        username: "Username"
+        phone: "Phone"
+        address: "Address"
+        city: "City"
+        state: "State"
+        zip_code: "Zip code"
+        remember_me: "Remember me"
+      order:
+        done: "Done"
+        order: "Order"
+        status:
+          finished: "Finished"
+          production: "In production"
+          unfinished: "Unfinished"
+          delivered: "Delivered"
+      product:
+        title: "Products"
+        name: "Name"
+        description: "Description"
+        price: "Price"
+        active: "Active"
+      item:
+        quantity: "Quantity" 
+    buttons:
+      show: "Show"
+      back: "Back"
+      edit: "Edit"
+      destroy: "Delete"
+      update: "Update"
+    devise:
+      cancel: "Cancel my account"
+      sign_up: "Sign_up"
+      sign_in: "Sign_in"
+      log_in: "Log_in"
+      forgot_pw: "Forgot password"
+  controller:
+    orders:
+      success_create: "Order successfully created"
+      success_update: "Order successfully updated"
+      success_destroy: "Order successfully deleted"
+    products:
+      success_create: "Product successfully created"
+      success_update: "Product successfully updated"
+      success_destroy: "Product successfully deleted"
