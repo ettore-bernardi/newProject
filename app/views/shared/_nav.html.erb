@@ -8,6 +8,12 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
         </ul>
         <% if user_signed_in? %>
+          <a href="<%= request.path %>?locale=en">
+            <span class="flag-icon flag-icon-us me-2 fs-4"></span>
+          </a>
+          <a href="<%= request.path %>?locale=pt-BR">
+            <span class="flag-icon flag-icon-br fs-4"></span>
+          </a>
           <div class="dropdown">
             <div class="btn dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <%= image_tag("user_avatar.png", width: 50) %>

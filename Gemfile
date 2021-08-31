@@ -16,6 +16,7 @@ gem 'cocoon'
 gem 'devise'
 gem 'nested_form'
 gem 'simple_form'
+gem 'flag-icons-rails'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
